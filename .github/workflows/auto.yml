@@ -18,7 +18,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.12'  # Specify Python version
+          python-version: '3.12'  
 
       # Step 3: Install dependencies and Chrome
       - name: Install dependencies and Chrome
@@ -36,6 +36,7 @@ jobs:
       - name: Run crawler script
         run: |
           python liu_data.py
+          python kth_data.py
 
       # Step 5: Commit and push changes
       - name: Commit and push changes

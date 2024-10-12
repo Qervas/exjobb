@@ -187,8 +187,8 @@ def crawl_exjobb_selenium():
         os.makedirs('data', exist_ok=True)
         # Save the data to a CSV file
         df = pd.DataFrame(all_projects)
-        df.to_csv('data/exjobb_projects.csv', index=False, encoding='utf-8-sig')
-        print("Data saved to data/exjobb_projects.csv")
+        df.to_csv('data/liu_exjobb_projects.csv', index=False, encoding='utf-8-sig')
+        print("Data saved to data/liu_exjobb_projects.csv")
     else:
         print("No project information collected. Please check the crawler logic.")
 

@@ -1,6 +1,7 @@
 selenium
 pandas
 streamlit
+streamlit-extras
 plotly
 scikit-learn
 sentence-transformers
@@ -9,3 +10,4 @@ wordcloud
 matplotlib
 openpyxl
 webdriver-manager
+

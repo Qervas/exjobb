@@ -1,0 +1,52 @@
+name: Daily Exjobb Data 
+
+on:
+  schedule:
+    - cron: '0 2 * * *'  
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.12'  
+
+      - name: Install dependencies and Chrome
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget unzip
+          # 安装 Google Chrome
+          wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+          sudo apt install -y ./google-chrome-stable_current_amd64.deb
+          # ChromeDriver
+          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
+          CHROME_MAJOR_VERSION=${CHROME_VERSION%%.*}
+          wget -N https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAJOR_VERSION
+          CHROME_DRIVER_VERSION=$(cat LATEST_RELEASE_$CHROME_MAJOR_VERSION)
+          wget https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
+          unzip chromedriver_linux64.zip
+          sudo mv chromedriver /usr/local/bin/
+          sudo chmod +x /usr/local/bin/chromedriver
+          #  Python 
+          python -m pip install --upgrade pip
+          pip install selenium pandas
+
+      - name: Run crawler script
+        run: |
+          python liu_data.py
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/exjobb_projects_selenium.csv  # data/ is the directory where the output file is saved
+          git commit -m "Daily update: $(date +'%Y-%m-%d')"
+          git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

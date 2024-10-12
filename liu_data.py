@@ -9,6 +9,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException, NoSuchElementException
 from urllib.parse import urljoin
+from webdriver_manager.chrome import ChromeDriverManager  # Ensure this is installed
 
 # Initialize browser options
 chrome_options = Options()
@@ -17,9 +18,9 @@ chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.add_argument('--disable-dev-shm-usage')  # Overcome limited resource problems
 
-# Initialize WebDriver without specifying binary_location and executable_path
-# Assumes chromedriver is in PATH and Chrome is installed in standard location
-driver = webdriver.Chrome(options=chrome_options)
+# Initialize WebDriver using webdriver-manager and Service
+service = Service(ChromeDriverManager().install())
+driver = webdriver.Chrome(service=service, options=chrome_options)
 
 # Target URL
 base_url = 'https://exjobb.liu.se/en-US/'

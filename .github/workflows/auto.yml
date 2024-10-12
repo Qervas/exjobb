@@ -28,15 +28,6 @@ jobs:
           # Install Google Chrome
           wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
           sudo apt install -y ./google-chrome-stable_current_amd64.deb
-          # Install ChromeDriver
-          CHROME_VERSION=$(google-chrome --version | grep -oP '\d+\.\d+\.\d+')
-          CHROME_MAJOR_VERSION=${CHROME_VERSION%%.*}
-          wget -N https://chromedriver.storage.googleapis.com/LATEST_RELEASE_$CHROME_MAJOR_VERSION
-          CHROME_DRIVER_VERSION=$(cat LATEST_RELEASE_$CHROME_MAJOR_VERSION)
-          wget https://chromedriver.storage.googleapis.com/$CHROME_DRIVER_VERSION/chromedriver_linux64.zip
-          unzip chromedriver_linux64.zip
-          sudo mv chromedriver /usr/local/bin/
-          sudo chmod +x /usr/local/bin/chromedriver
           # Install Python dependencies
           python -m pip install --upgrade pip
           pip install -r requirements.txt
@@ -51,7 +42,7 @@ jobs:
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/exjobb_projects_selenium.csv
+          git add data/exjobb_projects.csv
           git commit -m "Daily update: $(date +'%Y-%m-%d')"
           git push
         env:

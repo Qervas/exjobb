@@ -1,0 +1,11 @@
+selenium
+pandas
+streamlit
+plotly
+scikit-learn
+sentence-transformers
+nltk
+wordcloud
+matplotlib
+openpyxl
+webdriver-manager

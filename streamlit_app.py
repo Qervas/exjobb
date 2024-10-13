@@ -51,6 +51,10 @@ if st.button("Linköping University 🎓"):
 # KTH button
 if st.button("KTH (Royal Institute of Technology) 🏛️"):
     switch_page("kth")
+    
+# CTH button
+if st.button("CTH (Chalmers University of Technology) 🏫"):
+	switch_page("cth")
 
 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -72,5 +76,6 @@ def sidebar():
         st.page_link("streamlit_app.py", label="Home", icon="🏠")
         st.page_link("pages/liu.py", label="Linköping University", icon="🎓")
         st.page_link("pages/kth.py", label="KTH", icon="🏛️")
+        st.page_link("pages/cth.py", label="Chalmers", icon="🏫")
 
 sidebar()

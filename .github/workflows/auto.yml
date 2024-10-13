@@ -37,6 +37,7 @@ jobs:
         run: |
           python liu_data.py
           python kth_data.py
+          python cth_data.py
 
       # Step 5: Commit and push changes
       - name: Commit and push changes
@@ -45,6 +46,7 @@ jobs:
           git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/liu_exjobb_projects.csv
           git add data/kth_exjobb_projects.csv
+          git add data/cth_exjobb_projects.csv
           git commit -m "Daily update: $(date +'%Y-%m-%d')"
           git push
         env:

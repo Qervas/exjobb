@@ -1,6 +1,6 @@
 # Exjobb Projects Visualizer
 
-![Project Logo](./logo.png) 
+![Project Logo](./logo.png)
 
 ## Table of Contents
 
@@ -45,20 +45,17 @@ Before you begin, ensure you have met the following requirements:
    git clone https://github.com/your-username/liu-exjobb-crawler.git
    cd liu-exjobb-crawler
    ```
-
 2. **Create a Virtual Environment (Optional but Recommended)**
 
    ```bash
    python -m venv venv
    source venv/bin/activate  # On Windows: venv\Scripts\activate
    ```
-
 3. **Install Dependencies**
 
    ```bash
    pip install -r requirements.txt
    ```
-
 4. **Set Up ChromeDriver**
 
    - Download the ChromeDriver version that matches your installed Chrome browser.
@@ -68,10 +65,10 @@ Before you begin, ensure you have met the following requirements:
 
 ### Running the Scraper
 
-The scraper script `liu_data.py` uses Selenium to navigate the Exjobb website, extract project information, and save it to a CSV file.
+The scraper script `*_data.py` uses Selenium to navigate the Exjobb website, extract project information, and save it to a CSV file.
 
 ```bash
-python liu_data.py
+python *_data.py
 ```
 
 After running, the scraped data will be available at `data/exjobb_projects.csv`.
@@ -90,8 +87,8 @@ This command will open a new tab in your default web browser displaying the inte
 
 ```
 ├── data
-│   └── exjobb_projects.csv       # Scraped project data
-├── liu_data.py                   # Web scraper script
+│   └── *_exjobb_projects.csv       # Scraped project data
+├── *_data.py                   # Web scraper script
 ├── README.md                     # Project documentation
 ├── requirements.txt              # Python dependencies
 └── streamlit_app.py              # Streamlit visualization app
@@ -110,13 +107,11 @@ To ensure that the scraped data is updated daily, a GitHub Actions workflow is s
 1. **GitHub Actions Workflow**
 
    The workflow file `.github/workflows/auto.yml` is configured to run the `liu_data.py` script daily at 02:00 UTC.
-
 2. **Setup Steps**
 
    - Ensure that `.github/workflows/auto.yml` is present in your repository.
    - The workflow installs necessary dependencies, Chrome, and ChromeDriver before running the scraper.
    - After scraping, it commits and pushes the updated `exjobb_projects.csv` back to the repository.
-
 3. **Monitoring**
 
    - Navigate to the **Actions** tab in your GitHub repository to monitor workflow runs.
@@ -127,25 +122,21 @@ To ensure that the scraped data is updated daily, a GitHub Actions workflow is s
 Contributions are welcome! Follow these steps to contribute:
 
 1. **Fork the Repository**
-
 2. **Create a New Branch**
 
    ```bash
    git checkout -b feature/YourFeature
    ```
-
 3. **Make Changes and Commit**
 
    ```bash
    git commit -m "Add new feature"
    ```
-
 4. **Push to the Branch**
 
    ```bash
    git push origin feature/YourFeature
    ```
-
 5. **Open a Pull Request**
 
 ## License

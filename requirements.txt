@@ -10,4 +10,4 @@ wordcloud
 matplotlib
 openpyxl
 webdriver-manager
-
+fuzzywuzzy
